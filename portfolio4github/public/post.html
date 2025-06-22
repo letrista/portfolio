@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post | Letrista</title>
+    <link rel="icon" type="image/png" href="./img/logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f0f0f',
+                        coffee: '#6f4e37'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-dark text-gray-200 font-sans">
+
+    <header class="bg-neutral-900 shadow-md">
+        <nav class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center relative">
+            <h1 class="text-xl font-bold text-white flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-1 hover:text-coffee transition">
+                    Letrista
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" class="w-5 h-5" fill="currentColor"
+                        stroke="none">
+                        <style>
+                            /* Prose base */
+                            #post-content p {
+                                margin-bottom: 1rem;
+                                line-height: 1.7;
+                                color: #d1d5db;
+                                /* gray-300 */
+                            }
+
+                            #post-content h2 {
+                                margin-top: 2.5rem;
+                                margin-bottom: 1rem;
+                                font-weight: 700;
+                                font-size: 1.5rem;
+                                /* text-xl */
+                                color: #c64800;
+                                /* amber-500 (coffe-ish) */
+                                border-bottom: 2px solid #78350f;
+                                /* darker amber for underline */
+                                padding-bottom: 0.25rem;
+                            }
+
+                            #post-content ul {
+                                margin-left: 1.25rem;
+                                margin-bottom: 1.5rem;
+                                list-style-type: disc;
+                                color: #d1d5db;
+                            }
+
+                            #post-content ul li {
+                                margin-bottom: 0.5rem;
+                            }
+
+                            #post-content pre {
+                                background-color: #4242423c;
+                                /* gray-800 */
+                                padding: 1rem;
+                                border-radius: 0.5rem;
+                                overflow-x: auto;
+                                margin-bottom: 1.5rem;
+                                color: #c64800;
+                                /* amber-400 for code */
+                                font-family: 'Source Code Pro', monospace, monospace;
+                                font-size: 0.875rem;
+                                /* text-sm */
+                                line-height: 1.4;
+                            }
+
+                            #post-content code {
+                                /* gray-700 */
+                                padding: 0.15rem 0.3rem;
+                                border-radius: 0.25rem;
+                                font-family: 'Source Code Pro', monospace, monospace;
+                                font-size: 0.9rem;
+                                color: #c64800;
+                            }
+
+                            /* Links */
+                            #post-content a {
+                                color: #c64800;
+                                text-decoration: underline;
+                                transition: color 0.3s ease;
+                            }
+
+                            #post-content a:hover {
+                                color: #78350f;
+                            }
+
+                            /* Paragraphs with strong */
+                            #post-content strong {
+                                font-weight: 700;
+                                color: #c64800;
+                            }
+
+                            /* Optional: style for blockquotes if needed */
+                            #post-content blockquote {
+                                border-left: 4px solid #c64800;
+                                padding-left: 1rem;
+                                margin-left: 0;
+                                color: #c64800;
+                                font-style: italic;
+                                margin-bottom: 1.5rem;
+                            }
+                        </style>
+
+                        <path d="M30 210c0-6 33-10 80-10s80 4 80 10-33 10-80 10-80-4-80-10z" />
+                        <path
+                            d="M74 172c-6-4-15-31-21-59l-10-53h69c38 0 67 4 64 9-3 5 1 11 9 15 22 8 19 47-5 53-11 3-20 11-20 18 0 22-61 34-86 17zm76-21c0-5 3-23 6-40l7-31h-52c-54 0-54 0-45 49l7 31h38c22 0 39-4 39-9z" />
+                        <path class="steam" d="M80 25c0-8 5-15 10-15s10 7 10 15-4 15-10 15-10-7-10-15z" />
+                        <path class="steam steam2" d="M120 25c0-8 5-15 10-15s10 7 10 15-4 15-10 15-10-7-10-15z" />
+                    </svg>
+                </a>
+            </h1>
+
+            <ul class="hidden md:flex space-x-6 text-sm">
+                <li><a href="index.html" class="text-gray-100 hover:text-coffee transition">Início</a></li>
+                <li><a href="projetos.html" class="text-gray-100 hover:text-coffee transition">Projetos</a></li>
+                <li><a href="blog.html" class="text-gray-100 hover:text-coffee transition">Blog</a></li>
+                <li><a href="contato.html" class="text-gray-100 hover:text-coffee transition">Contato</a></li>
+            </ul>
+
+            <button id="menuToggle" aria-label="Abrir menu"
+                class="md:hidden flex flex-col justify-between w-8 h-7 z-50">
+                <span class="block h-0.5 w-full bg-gray-100 transition-all"></span>
+                <span class="block h-0.5 w-full bg-gray-100 transition-all"></span>
+                <span class="block h-0.5 w-full bg-gray-100 transition-all"></span>
+            </button>
+        </nav>
+
+        <div id="overlay"
+            class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300">
+        </div>
+
+        <div id="mobileMenu"
+            class="fixed top-0 right-0 h-full w-64 bg-neutral-900/95 backdrop-blur-md shadow-2xl flex flex-col gap-6 py-10 px-8 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden rounded-l-2xl">
+
+            <nav class="flex flex-col gap-6 mt-4">
+                <a href="index.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Início</a>
+                <a href="projetos.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Projetos</a>
+                <a href="blog.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Blog</a>
+                <a href="contato.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-6 py-16 space-y-12">
+        <article
+            class="space-y-8 bg-neutral-800 rounded-2xl p-8 shadow-lg ring-1 ring-gray-700/50 transition hover:ring-coffee/70">
+            <button onclick="history.back()"
+                class="inline-flex items-center gap-2 px-5 py-2 bg-neutral-700 hover:bg-coffee text-gray-300 hover:text-white rounded-md shadow-md transition duration-300">
+                ← Voltar
+            </button>
+            <header class="space-y-2 border-b border-gray-700 pb-4">
+                <h1 id="post-title" class="text-4xl font-extrabold text-white leading-tight"></h1>
+                <p id="post-date" class="text-sm text-gray-400 tracking-wide"></p>
+            </header>
+            <section id="post-content" class="prose prose-invert max-w-none text-gray-300 leading-relaxed"></section>
+        </article>
+    </main>
+
+    <footer class="bg-neutral-900 text-center py-6 text-sm text-gray-500">
+        © 2025 Letrista. Todos os direitos reservados.
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "DADOS SENSÍVEIS",
+            authDomain: "DADOS SENSÍVEIS",
+            projectId: "DADOS SENSÍVEIS",
+            storageBucket: "DADOS SENSÍVEIS",
+            messagingSenderId: "DADOS SENSÍVEIS",
+            appId: "DADOS SENSÍVEIS"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        async function carregarPost() {
+            if (!postId) {
+                document.getElementById('post-title').innerText = "Post não encontrado";
+                document.getElementById('post-content').innerHTML = "<p>O post que você procura não existe ou foi removido.</p>";
+                return;
+            }
+
+            const docRef = doc(db, "posts", postId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const post = docSnap.data();
+                document.getElementById('post-title').innerText = post.title;
+                document.getElementById('post-date').innerText = post.date;
+                document.getElementById('post-content').innerHTML = post.content;
+            } else {
+                document.getElementById('post-title').innerText = "Post não encontrado";
+                document.getElementById('post-content').innerHTML = "<p>O post que você procura não existe ou foi removido.</p>";
+            }
+        }
+
+        carregarPost();
+    </script>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

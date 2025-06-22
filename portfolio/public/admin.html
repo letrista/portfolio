@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Letrista</title>
+    <link rel="icon" type="image/png" href="./img/logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-dark text-gray-200 p-8 space-y-6 font-sans">
+    <h1 class="text-3xl font-bold">Painel Admin - Letrista ☕</h1>
+
+    <div id="login-section" class="space-y-4">
+        <input id="email" type="email" placeholder="Email" class="px-4 py-2 rounded bg-neutral-700 text-white w-full">
+        <input id="password" type="password" placeholder="Senha"
+            class="px-4 py-2 rounded bg-neutral-700 text-white w-full">
+        <button id="login-btn" class="bg-coffee px-6 py-2 rounded hover:bg-orange-700 transition">Login</button>
+        <p id="login-status" class="text-sm text-red-400"></p>
+    </div>
+
+    <div id="admin-section" class="hidden space-y-4">
+        <input id="post-title" type="text" placeholder="Título do Post"
+            class="px-4 py-2 rounded bg-neutral-700 text-white w-full">
+        <textarea id="post-content" placeholder="Conteúdo HTML do Post" rows="10"
+            class="px-4 py-2 rounded bg-neutral-700 text-white w-full"></textarea>
+        <button id="publish-btn" class="bg-green-600 px-6 py-2 rounded hover:bg-green-700 transition">Publicar</button>
+        <p id="post-status" class="text-sm text-green-400"></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZb74v72iVlMHUnECMgoMDyfFKIzVeE68",
+            authDomain: "letristadev.firebaseapp.com",
+            projectId: "letristadev",
+            storageBucket: "letristadev.firebasestorage.app",
+            messagingSenderId: "337285038192",
+            appId: "1:337285038192:web:9519a6b99451db33ce34b5"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const loginSection = document.getElementById('login-section');
+        const adminSection = document.getElementById('admin-section');
+
+        document.getElementById('login-btn').addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    document.getElementById('login-status').innerText = "Login realizado!";
+                })
+                .catch((error) => {
+                    document.getElementById('login-status').innerText = "Erro ao logar: " + error.message;
+                });
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginSection.classList.add('hidden');
+                adminSection.classList.remove('hidden');
+            } else {
+                loginSection.classList.remove('hidden');
+                adminSection.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('publish-btn').addEventListener('click', async () => {
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+
+            try {
+                await addDoc(collection(db, "posts"), {
+                    title,
+                    content,
+                    date: new Date().toLocaleDateString('pt-BR'),
+                    timestamp: serverTimestamp()
+                });
+                document.getElementById('post-status').innerText = "Post publicado com sucesso!";
+            } catch (e) {
+                document.getElementById('post-status').innerText = "Erro ao publicar: " + e.message;
+            }
+        });
+    </script>
+</body>
+
+</html>

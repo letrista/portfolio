@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel Admin | Letrista</title>
+    <link rel="icon" type="image/png" href="./img/logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: '#6f4e37',
+                        dark: '#121212',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-dark text-gray-200 min-h-screen flex items-center justify-center p-6">
+
+    <main class="w-full max-w-4xl bg-neutral-900 rounded-xl shadow-lg p-8">
+
+        <section id="login-section" class="max-w-md mx-auto">
+            <h1 class="text-3xl font-bold text-coffee mb-6 text-center">Painel Admin</h1>
+            <form id="login-form" class="space-y-4">
+                <input type="email" id="email" placeholder="Email" required autocomplete="username"
+                    class="w-full rounded-md px-4 py-2 bg-gray-800 text-gray-200 focus:outline-coffee" />
+                <input type="password" id="password" placeholder="Senha" required autocomplete="current-password"
+                    class="w-full rounded-md px-4 py-2 bg-gray-800 text-gray-200 focus:outline-coffee" />
+                <button type="submit"
+                    class="w-full py-2 rounded-md bg-coffee font-bold hover:bg-orange-600 transition">Entrar</button>
+            </form>
+            <p id="login-message" class="mt-4 text-center text-red-500"></p>
+        </section>
+
+        <section id="admin-section" class="hidden">
+
+            <header class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-coffee">Gerenciar Posts</h2>
+                <button id="logout-btn" class="bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition">Sair</button>
+            </header>
+
+            <form id="post-form" class="mb-6 space-y-4 bg-gray-800 p-4 rounded">
+                <input type="hidden" id="post-id" />
+                <input type="text" id="post-title" placeholder="Título do post" required
+                    class="w-full rounded-md px-3 py-2 bg-gray-900 text-gray-200 focus:outline-coffee" />
+                <input type="text" id="post-date" placeholder="Data (ex: 22 de Junho de 2025)" required
+                    class="w-full rounded-md px-3 py-2 bg-gray-900 text-gray-200 focus:outline-coffee" />
+                <textarea id="post-content" placeholder="Conteúdo HTML do post" rows="8" required
+                    class="w-full rounded-md px-3 py-2 bg-gray-900 text-gray-200 focus:outline-coffee"></textarea>
+                <div class="flex gap-4">
+                    <button type="submit" id="save-post-btn"
+                        class="bg-coffee px-4 py-2 rounded font-bold hover:bg-orange-600 transition">Salvar</button>
+                    <button type="button" id="cancel-edit-btn"
+                        class="bg-gray-600 px-4 py-2 rounded hover:bg-gray-700 transition" hidden>Cancelar</button>
+                </div>
+            </form>
+
+            <div id="posts-list" class="space-y-4 max-h-[400px] overflow-y-auto">
+            </div>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

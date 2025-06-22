@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letrista | Contato</title>
+    <link rel="icon" type="image/png" href="./img/logo.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f0f0f',
+                        coffee: '#6f4e37'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-dark text-gray-200 font-sans">
+
+    <div id="notification"
+        class="hidden fixed top-6 left-1/2 -translate-x-1/2 bg-coffee text-white px-6 py-3 rounded shadow-lg z-50">
+        Mensagem enviada com sucesso!
+    </div>
+
+    <header class="bg-neutral-900 shadow-md">
+        <nav class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center relative">
+            <h1 class="text-xl font-bold text-white flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-1 hover:text-coffee transition">
+                    Letrista
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" class="w-5 h-5" fill="currentColor"
+                        stroke="none">
+                        <style>
+                            .steam {
+                                animation: steamUp 2s ease-in-out infinite;
+                                opacity: 0.7;
+                            }
+
+                            .steam2 {
+                                animation-delay: 1s;
+                            }
+
+                            @keyframes steamUp {
+                                0% {
+                                    transform: translateY(0) scale(1);
+                                    opacity: 0.7;
+                                }
+
+                                50% {
+                                    transform: translateY(-10px) scale(1.1);
+                                    opacity: 0.4;
+                                }
+
+                                100% {
+                                    transform: translateY(-20px) scale(1.2);
+                                    opacity: 0;
+                                }
+                            }
+                        </style>
+                        <path d="M30 210c0-6 33-10 80-10s80 4 80 10-33 10-80 10-80-4-80-10z" />
+                        <path
+                            d="M74 172c-6-4-15-31-21-59l-10-53h69c38 0 67 4 64 9-3 5 1 11 9 15 22 8 19 47-5 53-11 3-20 11-20 18 0 22-61 34-86 17zm76-21c0-5 3-23 6-40l7-31h-52c-54 0-54 0-45 49l7 31h38c22 0 39-4 39-9z" />
+                        <path class="steam" d="M80 25c0-8 5-15 10-15s10 7 10 15-4 15-10 15-10-7-10-15z" />
+                        <path class="steam steam2" d="M120 25c0-8 5-15 10-15s10 7 10 15-4 15-10 15-10-7-10-15z" />
+                    </svg>
+                </a>
+            </h1>
+
+            <ul class="hidden md:flex space-x-6 text-sm">
+                <li><a href="index.html" class="text-gray-100 hover:text-coffee transition">Início</a></li>
+                <li><a href="projetos.html" class="text-gray-100 hover:text-coffee transition">Projetos</a></li>
+                <li><a href="blog.html" class="text-gray-100 hover:text-coffee transition">Blog</a></li>
+                <li><a href="contato.html" class="text-gray-100 hover:text-coffee transition">Contato</a></li>
+            </ul>
+
+            <button id="menuToggle" aria-label="Abrir menu"
+                class="md:hidden flex flex-col justify-between w-8 h-7 z-50">
+                <span class="block h-0.5 w-full bg-gray-100 transition-all"></span>
+                <span class="block h-0.5 w-full bg-gray-100 transition-all"></span>
+                <span class="block h-0.5 w-full bg-gray-100 transition-all"></span>
+            </button>
+        </nav>
+
+        <div id="overlay"
+            class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300">
+        </div>
+
+        <div id="mobileMenu"
+            class="fixed top-0 right-0 h-full w-64 bg-neutral-900/95 backdrop-blur-md shadow-2xl flex flex-col gap-6 py-10 px-8 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden rounded-l-2xl">
+
+            <nav class="flex flex-col gap-6 mt-4">
+                <a href="index.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Início</a>
+                <a href="projetos.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Projetos</a>
+                <a href="blog.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Blog</a>
+                <a href="contato.html"
+                    class="text-lg text-gray-100 hover:text-coffee transition border-b border-neutral-700 pb-2 focus:outline-none focus:ring-2 focus:ring-coffee rounded">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-16 space-y-10">
+        <section class="space-y-6" data-sr>
+            <h2 class="text-3xl font-bold text-white">Entre em Contato</h2>
+            <p class="text-gray-400">
+                Tem alguma dúvida, proposta ou só quer trocar uma ideia? Me envie uma mensagem!
+            </p>
+
+            <form id="formContato" class="space-y-4">
+                <div>
+                    <label class="block mb-1 text-sm text-gray-200">Nome</label>
+                    <input type="text" name="name" required
+                        class="w-full bg-neutral-800 border border-gray-700 rounded px-4 py-2 text-gray-100 focus:outline-none focus:border-coffee placeholder-gray-400"
+                        placeholder="Seu nome">
+                </div>
+
+                <div>
+                    <label class="block mb-1 text-sm text-gray-200">E-mail</label>
+                    <input type="email" name="email" required
+                        class="w-full bg-neutral-800 border border-gray-700 rounded px-4 py-2 text-gray-100 focus:outline-none focus:border-coffee placeholder-gray-400"
+                        placeholder="seuemail@exemplo.com">
+                </div>
+
+                <div>
+                    <label class="block mb-1 text-sm text-gray-200">Mensagem</label>
+                    <textarea name="message" rows="5" required
+                        class="w-full bg-neutral-800 border border-gray-700 rounded px-4 py-2 text-gray-100 focus:outline-none focus:border-coffee placeholder-gray-400"
+                        placeholder="Escreva sua mensagem aqui"></textarea>
+                </div>
+
+                <input type="hidden" name="time" id="time">
+
+                <button type="submit"
+                    class="bg-coffee hover:bg-coffee/80 text-white px-6 py-2 rounded shadow transition focus:outline-none focus:ring-2 focus:ring-coffee focus:ring-offset-1">
+                    Enviar
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <a href="https://github.com/letrista" target="_blank" rel="noopener noreferrer" title="Github ☕" class="fixed bottom-4 right-4 bg-neutral-800 border border-gray-600 text-gray-400 text-2xl rounded-full w-14 h-14 flex items-center justify-center
+          shadow-lg shadow-gray-700/70 transition duration-300 ease-in-out
+          hover:scale-110 hover:brightness-110 hover:shadow-[0_0_15px_rgba(100,100,100,0.9)]
+          cursor-pointer">
+        ☕
+    </a>
+
+    <footer class="bg-neutral-900 text-center py-6 text-sm text-gray-500">
+        © 2025 Letrista. Todos os direitos reservados.
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+            (function () {
+                emailjs.init('qlAFbJ7Jp-MEh8hBE');
+            })();
+    </script>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
