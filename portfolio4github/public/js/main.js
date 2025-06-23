@@ -100,12 +100,12 @@ if (postsContainer) {
   import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js").then(({ initializeApp }) => {
     import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js").then(firestore => {
       const firebaseConfig = {
-        apiKey: "AIzaSyBZb74v72iVlMHUnECMgoMDyfFKIzVeE68",
-        authDomain: "letristadev.firebaseapp.com",
-        projectId: "letristadev",
-        storageBucket: "letristadev.firebasestorage.app",
-        messagingSenderId: "337285038192",
-        appId: "1:337285038192:web:9519a6b99451db33ce34b5"
+        apiKey: "DADOS SENSÍVEIS",
+        authDomain: "DADOS SENSÍVEIS",
+        projectId: "DADOS SENSÍVEIS",
+        storageBucket: "DADOS SENSÍVEIS",
+        messagingSenderId: "DADOS SENSÍVEIS",
+        appId: "DADOS SENSÍVEIS"
       };
 
       const app = initializeApp(firebaseConfig);
